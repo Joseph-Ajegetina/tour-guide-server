@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const Activity = require("../models/Activity.model"); // Import your Activity model
 const Location = require("../models/Location.model"); // Import your Location model
 
@@ -8,7 +9,7 @@ const Location = require("../models/Location.model"); // Import your Location mo
 router.get("/", async (req, res) => {
   try {
     // Query the database to retrieve all locations
-    const allLocations = await Activity.distinct("location");
+    const allLocations = await Location.find();
     res.json(allLocations);
   } catch (error) {
     console.error(error);
@@ -44,10 +45,40 @@ router.post('/create', async (req, res) => {
             console.error(error)
             res.status(500).json ({message: "Server error"})
         })
+        })
+      
 
+// 4. Update Location (requires authentication)
+router.put("/:id", isAuthenticated, async (req, res) => {
+  try {
+    const updatedLocation = await Location.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updatedLocation) {
+      return res.status(404).json({ message: "Location not found" });
+    }
+    res.json(updatedLocation);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
-})
-
+router.delete("/:id", isAuthenticated, async (req,res) => {
+  try {
+    const deletedLocation = await Location.findByIdAndRemove(req.params.id)
+    if (!deletedLocation) {
+      return res.status(404).json ({message: "Location not found"})
+    }
+    res.json(deletedLocation)}
+    catch(error) {
+      console.error(error)
+      res.status(500).json({message: "Server error"})
+    }
+  }
+)
 
 
 
