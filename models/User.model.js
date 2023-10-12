@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
   {
     email: {
@@ -22,7 +21,7 @@ const userSchema = new Schema(
     isAdmin: Boolean
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
+    // Timestamp:`createdAt` and `updatedAt`
     timestamps: true,
   }
 );
