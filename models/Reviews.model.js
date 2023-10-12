@@ -12,7 +12,7 @@ const reviewSchema = new Schema(
       ref: "Activity",
       required: [true, "Activity is required."],
     },
-    text: {
+    comment: {
       type: String,
       required: [true, "Review text is required."],
     },
