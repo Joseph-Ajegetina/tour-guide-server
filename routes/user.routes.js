@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
-const User = require("../models/User.model"); // Import your User model
+const User = require("../models/User.model.js"); // Import your User model
 
 // GET /api/users/profile - Get user profile (requires authentication)
 router.get("/profile", isAuthenticated, async (req, res) => {

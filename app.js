@@ -17,9 +17,9 @@ require("./config")(app);
 // 👇 Start handling routes here - Import
 const indexRoutes = require("./routes/index.routes");
 const authRoutes = require("./routes/auth.routes");
-const activityRoutes = require("./routes/activityRoutes");
-const locationRoutes = require("./routes/locationRoutes");
-const reviewRoutes = require("./routes/reviewRoutes");
+const activityRoutes = require("./routes/activity.routes");
+const locationRoutes = require("./routes/location.routes");
+const reviewRoutes = require("./routes/review.routes");
 
 // Register
 app.use("/api", indexRoutes);

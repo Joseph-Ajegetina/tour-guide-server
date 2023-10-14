@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
-const Activity = require("../models/Activity.model"); // Import your Activity model
-const locationRoutes = require("./locationRoutes"); // Import location routes
+const Activity = require("../models/Activity.model.js"); // Import your Activity model
+const locationRoutes = require("./location.routes.js"); // Import location routes
 
 
 // 1. Get All Activities
