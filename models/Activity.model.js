@@ -20,6 +20,7 @@ const activitySchema = new Schema(
       ref: "Location",
       required: [true, "Location is required."],
     },
+    images:[String],
     inclusions: [String],
     requirements: [String], 
   },
