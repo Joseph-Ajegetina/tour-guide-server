@@ -5,7 +5,6 @@ const User = require("../models/User.model.js"); // Import your User model
 
 // GET /api/users/profile - Get user profile (requires authentication)
 router.get("/:userId", isAuthenticated, async (req, res) => {
-  console.log(req);
   try {
     // Retrieve the user's profile 
     const userId = req.params.userId; //With the middleware
