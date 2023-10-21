@@ -18,10 +18,13 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Username is required."],
     },
-    isAdmin: Boolean
+    isAdmin: Boolean,
+    phone: String,
+    firstName: String, 
+    lastName: String,
+    image: String
   },
   {
-    // Timestamp:`createdAt` and `updatedAt`
     timestamps: true,
   }
 );

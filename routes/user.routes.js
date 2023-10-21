@@ -4,10 +4,11 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const User = require("../models/User.model.js"); // Import your User model
 
 // GET /api/users/profile - Get user profile (requires authentication)
-router.get("/profile", isAuthenticated, async (req, res) => {
+router.get("/:userId", isAuthenticated, async (req, res) => {
+  console.log(req);
   try {
     // Retrieve the user's profile 
-    const userId = req.userId; //With the middleware
+    const userId = req.params.userId; //With the middleware
  // Query the database to fetch the user's profile
     const user = await User.findById(userId);
     if (!user) {
@@ -25,12 +26,12 @@ router.get("/profile", isAuthenticated, async (req, res) => {
 });
 
 //Route to handle Updating the profile
-router.put("/profile", isAuthenticated, async(req,res) => {
+router.put("/:userId", isAuthenticated, async(req,res) => {
   try {
     // Retrieve the user's ID from the authenticated token
-    const userId = req.userId 
+    const {userId} = req.params
     // Retrieve the updated user data from the request body
-    const {username, email, password} = req.body
+    const {username, email, firstName, image, lastName, phone} = req.body
         // Find the user by their ID
     const user = await User.findById(userId)
 
@@ -42,7 +43,10 @@ router.put("/profile", isAuthenticated, async(req,res) => {
     // Update the user's profile with the new data
     user.username = username;
     user.email = email;
-    user.password = password
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.phone = phone;
+    user.image = image
    
 
     // Save the updated user data to the database
