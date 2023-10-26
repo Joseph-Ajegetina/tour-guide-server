@@ -22,11 +22,21 @@ const userSchema = new Schema(
     phone: String,
     firstName: String, 
     lastName: String,
-    image: String
+    image: String,
+    bookings: {
+      type: [Schema.Types.ObjectId],
+      ref: "Activity"
+    },
+    wishlists: {
+    type: [Schema.Types.ObjectId],
+    ref: "Activity"
   },
+ },
   {
     timestamps: true,
   }
+   
+  
 );
 
 const User = model("User", userSchema);
