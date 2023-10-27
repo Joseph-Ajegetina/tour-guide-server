@@ -8,7 +8,8 @@ const locationSchema = new Schema({
     city: {
         type: String,
         required: [true, "Country is required."],
-    }
+    }, 
+    description: String
 },
 {timestamps: true},
 )
