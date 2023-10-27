@@ -76,16 +76,23 @@ router.delete("/:id", isAuthenticated, async (req, res) => {
 });
 
 // // 6. Filter Activities
-// router.get("/filter", async (req, res) => {
-//   try {
-//     // Implement  filtering logic here 
-//     // Filter by location, price, duration, or category
-//     const filteredActivities = await Activity.find(/* Your filter criteria here */);
-//     res.json(filteredActivities);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// });
+router.get("/location/:id", async (req, res) => {
+  const {id} = req.params
+
+  if (!id) {
+    return res.status(400).json({ message: 'locationId parameter is required' });
+  }
+
+
+  try {
+    // Implement  filtering logic here 
+    // Filter by location, price, duration, or category
+    const filteredActivities = await Activity.find({location: id});
+    res.json(filteredActivities);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 module.exports = router;
