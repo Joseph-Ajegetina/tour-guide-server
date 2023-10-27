@@ -18,12 +18,13 @@ router.get("/", async (req, res) => {
 });
 
 // 2. Get Activities by Location
-router.get("/:location", async (req, res) => {
-  const location = req.params.location;
+router.get("/:id", async (req, res) => {
+
+  const id = req.params.id;
 
   try {
     // Query the database to retrieve activities by location
-    const activitiesByLocation = await Activity.find({ location });
+    const activitiesByLocation = await Location.findById(id);
     res.json(activitiesByLocation);
   } catch (error) {
     console.error(error);
