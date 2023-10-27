@@ -9,7 +9,8 @@ const locationSchema = new Schema({
         type: String,
         required: [true, "Country is required."],
     }, 
-    description: String
+    description: String,
+    image: String
 },
 {timestamps: true},
 )

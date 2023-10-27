@@ -33,9 +33,9 @@ router.get("/:location", async (req, res) => {
 
 //3. Create a new location
 router.post('/create', async (req, res) => {
-    const  {name, country, city} = req.body
+    const  {country, city, image, description} = req.body
 
-    const newLocation = new Location({name, city, country})
+    const newLocation = new Location({ city, country, description, image})
     newLocation
         .save()
         .then ((createdLocation)=> {
